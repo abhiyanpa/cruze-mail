@@ -1,0 +1,14 @@
+name = "cruze-mail-worker"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+account_id = "7f6876ebb23e2c6b444da10fbbb1dde7"
+
+[vars]
+DOMAINS = "wasdmc.qzz.io,wasdsmp.qzz.io"
+FRONTEND_URL = "https://tempmail.abhiyanpa.in"
+FIREBASE_PROJECT_ID = "cruzemail"
+
+# Secrets (set via: npx wrangler secret put <NAME>)
+# ENCRYPTION_KEY        - random string for AES-256-GCM token encryption
+# FIREBASE_CLIENT_EMAIL - service account email
+# FIREBASE_PRIVATE_KEY  - service account private key (PEM)

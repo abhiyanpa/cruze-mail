@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Emails collection — readable by anyone (secured by unguessable inboxId)
+    match /emails/{emailId} {
+      allow read: if true;
+      allow write: if false;  // Only the CF Worker (via service account) can write
+    }
+
+    // Email mapping — only accessible by the CF Worker (server-side)
+    match /emailMap/{localPart} {
+      allow read, write: if false;
+    }
+
+    // User profiles — only accessible by the owner
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

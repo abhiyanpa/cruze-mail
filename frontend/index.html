@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUZE MAIL — Instant Temporary Email</title>
+  <meta name="description" content="Generate instant temporary email addresses with CRUZE MAIL. Secure, encrypted inboxes with real-time delivery. No signup required.">
+  <meta name="theme-color" content="#0a0a12">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+</head>
+<body>
+
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo" onclick="returnToHome()" style="cursor: pointer;">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+            <rect x="2" y="4" width="20" height="16" rx="3"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+        </div>
+        <span class="logo-text">CRUZE <span class="logo-accent">MAIL</span></span>
+      </div>
+      <div class="header-right" style="display: flex; gap: 12px; align-items: center;">
+        <button id="dashboard-btn" class="btn btn-secondary btn-sm" style="display: none;">Dashboard</button>
+        <button id="auth-btn" class="btn btn-secondary btn-sm" style="display: none;">Login</button>
+        <button id="logout-btn" class="btn btn-ghost btn-sm" style="display: none;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="main">
+    <!-- Welcome / Generate section -->
+    <section id="welcome-section" class="welcome-section">
+      <div class="welcome-card glass-card">
+        <div class="welcome-icon">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+
+            <rect x="2" y="4" width="20" height="16" rx="3"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+        </div>
+        <h1 class="welcome-title">Instant Temporary Email</h1>
+        <p class="welcome-desc">Generate a disposable email address in one click. Secure, encrypted, and self-destructing in 24 hours.</p>
+        <div class="generate-group">
+          <select id="domain-select" class="domain-select">
+            <option value="wasdmc.qzz.io">@wasdmc.qzz.io</option>
+            <option value="wasdsmp.qzz.io">@wasdsmp.qzz.io</option>
+          </select>
+          <button id="generate-btn" class="btn btn-primary">
+            Generate New Email
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Inbox section (hidden until email generated) -->
+    <section id="inbox-section" class="inbox-section" style="display:none;">
+      <!-- Email display card -->
+      <div class="email-display-card glass-card">
+        <div class="email-display-header">
+          <span class="label">Your Temporary Email</span>
+          <div class="timer-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            <span id="expire-timer">24:00:00</span>
+          </div>
+        </div>
+        <div class="email-display fade-in">
+          <span id="email-address" class="email-address">loading...</span>
+          <button id="copy-btn" class="copy-btn" title="Copy to clipboard">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+            </svg>
+          </button>
+        </div>
+        <div class="email-display-actions">
+          <button id="generate-btn-inline" class="btn btn-secondary btn-sm" onclick="returnToHome()">
+            New Address
+          </button>
+          <button id="save-btn" class="btn btn-secondary btn-sm" style="display: none;">
+            ⭐ Save
+          </button>
+          <button id="renew-btn" class="btn btn-secondary btn-sm">
+            Renew (+24h)
+          </button>
+          <button id="refresh-btn" class="btn btn-ghost btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12a9 9 0 11-6.219-8.56"/>
+              <polyline points="21 3 21 9 15 9"/>
+            </svg>
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <!-- Inbox list -->
+      <div class="inbox-card glass-card">
+        <div class="inbox-header">
+          <h2 class="inbox-title">
+            Inbox
+            <span class="inbox-count" id="email-count">0</span>
+          </h2>
+        </div>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <path d="M2 7l10 7 10-7"/>
+            </svg>
+          </div>
+          <p class="empty-text">Waiting for emails...</p>
+          <p class="empty-subtext">Send an email to the address above and it will appear here instantly.</p>
+        </div>
+
+        <!-- Email list -->
+        <div id="email-list" class="email-list"></div>
+      </div>
+    </section>
+
+    <!-- Dashboard section -->
+    <section id="dashboard-section" class="dashboard-section" style="display:none;">
+      <div class="dashboard-header">
+        <h2 class="welcome-title">Your Saved Inboxes</h2>
+        <p class="welcome-desc">Maximum 5 saved inboxes. Click an inbox to view it.</p>
+      </div>
+      <div id="saved-inboxes-list" class="email-list glass-card">
+        <!-- Populated by JS -->
+      </div>
+      <div style="margin-top: 32px; text-align: center;">
+        <button class="btn btn-primary" onclick="goToGenerate()">+ Generate New Inbox</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Email viewer overlay -->
+  <div id="viewer-overlay" class="viewer-overlay"></div>
+
+  <!-- Email viewer panel -->
+  <div id="email-viewer" class="email-viewer">
+    <div class="viewer-header">
+      <button id="viewer-close" class="viewer-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="viewer-meta">
+        <div class="viewer-subject" id="viewer-subject"></div>
+        <div class="viewer-info">
+          <span id="viewer-sender"></span>
+          <span class="viewer-dot">•</span>
+          <span id="viewer-time"></span>
+        </div>
+      </div>
+    </div>
+    <div class="viewer-body" id="viewer-body"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>CRUZE MAIL — Secure Temporary Email</p>
+  </footer>
+
+  <!-- Firebase SDK (compat for simplicity) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <!-- App scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
