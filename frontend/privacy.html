@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - CRUZE MAIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+  <style>
+    .legal-content {
+      max-width: 800px;
+      margin: 48px auto;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .legal-content h1 { margin-bottom: 24px; font-size: 28px; }
+    .legal-content h2 { margin-top: 32px; margin-bottom: 16px; font-size: 20px; color: var(--text-primary); }
+    .legal-content p { margin-bottom: 16px; color: var(--text-secondary); line-height: 1.6; }
+    .legal-content ul { margin-bottom: 16px; padding-left: 20px; color: var(--text-secondary); }
+    .legal-content li { margin-bottom: 8px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo" style="cursor: pointer;" onclick="window.location.href='/'">
+        <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span class="logo-text">CRUZE <span class="logo-accent">MAIL</span></span>
+      </div>
+      <a href="/" class="btn btn-secondary btn-sm">Back to Home</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="legal-content">
+      <h1>Privacy Policy</h1>
+      <p>Last Updated: May 25, 2026</p>
+
+      <h2>1. Information We Collect</h2>
+      <p>When you use CRUZE MAIL, the core function of the service is to generate temporary email addresses and receive emails on your behalf. The data collected includes:</p>
+      <ul>
+        <li><strong>Email Content:</strong> The emails sent to your temporary address are received and temporarily stored in our database for you to read.</li>
+        <li><strong>Authentication Data:</strong> If you choose to log in via Google, we store your user ID and associated email to allow you to save inboxes permanently across sessions.</li>
+        <li><strong>Technical Data:</strong> We may log IP addresses and browser metadata solely for security, abuse-prevention (Rate Limiting), and service monitoring.</li>
+      </ul>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>We use the collected information exclusively to operate, maintain, and secure the service. Email contents are only displayed to the user who holds the corresponding inbox token.</p>
+
+      <h2>3. Data Retention and Deletion</h2>
+      <p>Privacy is our priority. Our retention policy is strictly automated:</p>
+      <ul>
+        <li><strong>Temporary Inboxes:</strong> All generated inboxes and their received emails automatically expire and are permanently deleted after 24 hours (or up to 48 hours if renewed).</li>
+        <li><strong>Saved Inboxes:</strong> If you authenticate and explicitly "Save" an inbox, it is retained permanently linked to your account until you choose to delete it.</li>
+        <li>We do not keep backups of expired or deleted emails. Once deleted, they are gone forever.</li>
+      </ul>
+
+      <h2>4. Security</h2>
+      <p>We implement robust, modern security measures, including AES-256-GCM encryption for inbox session tokens and secure Firestore Rules to prevent unauthorized access. However, no internet service is 100% secure. You use this service at your own discretion.</p>
+
+      <h2>5. Sharing of Information</h2>
+      <p>We do not sell, rent, or trade your personal information or email contents to third parties. We may only disclose data if legally required to do so by law enforcement.</p>
+
+      <h2>6. Contact Us</h2>
+      <p>For privacy-related inquiries, data deletion requests, or support, please contact us at: <strong>tempmail@abhiyanpa.in</strong></p>
+    </div>
+  </main>
+</body>
+</html>
